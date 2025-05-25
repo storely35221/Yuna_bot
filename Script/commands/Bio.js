@@ -1,11 +1,11 @@
 module.exports.config = {
-	name: "bio",
+	name: "بايو",
 	version: "1.0.0",
 	hasPermssion: 2,
 	credits: "𝐂𝐘𝐁𝐄𝐑 ☢️_𖣘 -𝐁𝐎𝐓 ⚠️ 𝑻𝑬𝑨𝑴_ ☢️",
-	description: "Change bot's bio",
-	commandCategory: "admin",
-	usages: "bio [text]",
+	description: "تغيير بايو حساب البوت",
+	commandCategory: "ادمن",
+	usages: "بايو [نص]",
   cooldowns: 5
   
 }
