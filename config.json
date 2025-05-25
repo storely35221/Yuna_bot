@@ -16,15 +16,15 @@
     "EMAIL": "",
     "PASSWORD": "",
     "OTPKEY": "",
-    "BOTNAME": "𝐂𝐘𝐁𝐄𝐑 ☢️_𖣘 -𝐁𝐎𝐓 ⚠️",
+    "BOTNAME": "YUNA BOT •-• ",
     "PREFIX": "/",
     "ADMINBOT": [
-        "61576357565998",
-        "100015168369582",
-        "61550035211214"
+        "61576298078806",
+        "100084485225595",
+        ""
     ],
     "NDH": [
-        "100000478146113"
+        "100084485225595"
     ],
     "DATABASE": {
         "sqlite": {
@@ -233,6 +233,16 @@
         "delayUnsend": 300
     },
     "helpall": {
+        "autoUnsend": true,
+        "delayUnsend": 20
+    },
+    "عمل": {
+        "cooldownTime": 5000
+    },
+    "صيد": {
+        "cooldownTime": 1000000
+    },
+    "اوامر": {
         "autoUnsend": true,
         "delayUnsend": 20
     }
