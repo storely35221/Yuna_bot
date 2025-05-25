@@ -1,8 +1,10 @@
+const axios = require("axios");
+
 module.exports.config = {
     name: "joinNoti",
     eventType: ["log:subscribe"],
     version: "1.0.1",
-    credits: "𝐂𝐘𝐁𝐄𝐑 ☢️_𖣘 -𝐁𝐎𝐓 ⚠️ 𝑻𝑬𝑨𝑴_ ☢️",
+    credits: "يونو",
     description: "Notification of bots or people entering groups without media"
 };
 
@@ -13,16 +15,33 @@ module.exports.run = async function({ api, event }) {
     if (event.logMessageData.addedParticipants.some(i => i.userFbId == api.getCurrentUserID())) {
         api.changeNickname(`[ ${global.config.PREFIX} ] • ${(!global.config.BOTNAME) ? " " : global.config.BOTNAME}`, threadID, api.getCurrentUserID());
 
-        return api.sendMessage(
-            `أهلاً وسهلاً في القروب يا مززز! 🤩✨
+        try {
+            // تحميل الصورة من الرابط وتحويلها لـ Buffer
+            const response = await axios.get("https://i.imgur.com/fS8RCHv.jpeg", { responseType: "arraybuffer" });
+            const imageBuffer = Buffer.from(response.data, "utf-8");
+
+            return api.sendMessage({
+                body: `أهلاً وسهلاً في القروب يا مززز! 🤩✨
 
 شكراً لإضافتي! أنا ✨يونا✨، مساعدتكم الخارقة! 
 لرؤية الأوامر اكتبوا: ${global.config.PREFIX}اوامر
 \n\n
 رابط
 مطوري:https://www.facebook.com/100084485225595 \n\n
-يلا نفلها سوا! 🕺💃`, threadID);
+يلا نفلها سوا! 🕺💃`,
+                attachment: imageBuffer
+            }, threadID);
+        } catch (error) {
+            console.log("خطأ في تحميل الصورة أو إرسال الرسالة:", error);
+            // لو صار خطأ، نرسل بس النص
+            return api.sendMessage(
+                `أهلاً وسهلاً في القروب يا مززز! شكراً لإضافتي! أنا ✨يونا✨، مساعدتكم الخارقة!`,
+                threadID
+            );
+        }
+
     } else {
+        // الكود الخاص بالترحيب بالبشر (غير البوت)
         try {
             let { threadName, participantIDs } = await api.getThreadInfo(threadID);
             const threadData = global.data.threadData.get(parseInt(threadID)) || {};
@@ -61,4 +80,4 @@ module.exports.run = async function({ api, event }) {
             return console.log(e);
         }
     }
-}
+                }
